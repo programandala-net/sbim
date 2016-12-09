@@ -34,8 +34,10 @@ http://programandala.net/es.programa.sbim.html
 
 CONFIG.sh             :: the install options, to be edited
 INSTALL.sh            :: the installer
+LICENSE.txt           :: the license
 README.adoc           :: this file
 UNINSTALL.sh          :: the uninstaller
+VERSIONS.adoc         :: the versions
 sbasic2sbim.vim       :: a simple converter from S*BASIC to SBim
 sbim.converter.vim    :: the converter from SBim to actual S*BASIC
 sbim.ftdetect.vim     :: the Vim filetype detecter for SBim

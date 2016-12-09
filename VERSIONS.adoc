@@ -1,0 +1,22 @@
+= Versions of SBim
+:author: Marcos Cruz (programandala.net), 2015, 2016
+:revdate: 2016-12-09
+
+// This file is part of SBim
+// http://programandala.net/es.programa.sbim.html
+
+== 1.0.0
+
+released on 2016-12-09.
+
+New:
+
+- Syntax files for SBim and SuperBASIC.
+- Converter from S*BASIC to SBim.
+- Git repository in GitHub.
+
+== 0.1.0
+
+Released on 2016-03.
+
+First public version.
