@@ -1,11 +1,32 @@
 " sbasic2sbim.vim
 "
 " Convert a S*BASIC program to the SBim format.
-"
-" Author: Marcos Cruz (http://programandala.net)
-"
+
+" This file is part of SBim
+" http://programandala.net/en.program.sbim.html
+
+" Author: Marcos Cruz (programandala.net), 2016
+
+" License:
+
+" You may do whatever you want with this work, so long as you
+" retain the copyright/authorship/acknowledgment/credit
+" notice(s) and this license in all redistributed copies and
+" derived works.  There is no warranty.
+
+" History:
+
 " 2016-01-17: Start.
-" 2016-01-19: Added filetype.
+" 2016-01-19: Add filetype.
+" 2016-12-09: Add this converter to SBim. Add usage comment.
+
+" Usage:
+
+" 1. Open your S*BASIC program in Vim.
+" 2. Execute this converter with the `source` ex command of Vim.
+" 3. Write the converted source with different filename.
+
+" ==============================================================
 
 " Remove line numbers:
 %s@^\d\+ @@

@@ -1,6 +1,6 @@
 = SBim
 :author: Marcos Cruz (programandala.net)
-:revdate: 2016-03-06
+:revdate: 2016-12-09
 
 // This file is part of SBim
 // http://programandala.net/en.program.sbim.html
@@ -22,10 +22,30 @@ http://programandala.net/es.programa.sbim.html
 == Install
 
 . Edit CONFIG.sh to suit your installation directory and the way files
-  should installed. Uncomment only the desired options. Defaults:
+  should be installed. Uncomment only the desired options. Defaults:
   user-wide installation with symbolic links.
-. Execute INSTALL.sh. 
+. Execute `INSTALL.sh`.
 
 ==  Uninstall
 
-. Execute UNINSTALL.sh.
+. Execute `UNINSTALL.sh`.
+
+== Files
+
+CONFIG.sh          :: the install options, to be edited
+INSTALL.sh         :: the installer
+README.adoc        :: this file
+UNINSTALL.sh       :: the uninstaller
+sbasic2sbim.vim    :: a simple converter from S*BASIC to SBim
+sbim.converter.vim :: the converter from SBim to actual S*BASIC
+sbim.ftdetect.vim  :: the Vim filetype detecter for SBim
+sbim.ftplugin.vim  :: the Vim filetype plugin for SBim
+
+Note: `sbasic2sbim.vim` is not installed by `INSTALL.sh`. It must be
+used manually from Vim. See the source for details.
+
+== Git repository
+
+The Git repository was created on 2016-12-09 from development backups,
+in order to prepare the first release and make future development
+easier.
