@@ -32,14 +32,16 @@ http://programandala.net/es.programa.sbim.html
 
 == Files
 
-CONFIG.sh          :: the install options, to be edited
-INSTALL.sh         :: the installer
-README.adoc        :: this file
-UNINSTALL.sh       :: the uninstaller
-sbasic2sbim.vim    :: a simple converter from S*BASIC to SBim
-sbim.converter.vim :: the converter from SBim to actual S*BASIC
-sbim.ftdetect.vim  :: the Vim filetype detecter for SBim
-sbim.ftplugin.vim  :: the Vim filetype plugin for SBim
+CONFIG.sh             :: the install options, to be edited
+INSTALL.sh            :: the installer
+README.adoc           :: this file
+UNINSTALL.sh          :: the uninstaller
+sbasic2sbim.vim       :: a simple converter from S*BASIC to SBim
+sbim.converter.vim    :: the converter from SBim to actual S*BASIC
+sbim.ftdetect.vim     :: the Vim filetype detecter for SBim
+sbim.ftplugin.vim     :: the Vim filetype plugin for SBim
+sbim.syntax.vim       :: the Vim syntax file for SBim
+superbasic.syntax.vim :: the Vim syntax file for SuperBASIC
 
 Note: `sbasic2sbim.vim` is not installed by `INSTALL.sh`. It must be
 used manually from Vim. See the source for details.

@@ -31,8 +31,9 @@
 # History
 
 # 2015-12-26: First version.
-# 2016-01-19: Updated header.
-# 2016-01-25: Added <sbim.ftplugin.vim>.
+# 2016-01-19: Update header.
+# 2016-01-25: Add <sbim.ftplugin.vim>.
+# 2016-12-09: Add syntax files.
 
 # ##############################################################
 
@@ -41,5 +42,7 @@
 eval ${INSTALLCMD}sbim.converter.vim $VIMDIR/sbim.vim
 eval ${INSTALLCMD}sbim.ftdetect.vim $VIMDIR/ftdetect/sbim.vim
 eval ${INSTALLCMD}sbim.ftplugin.vim $VIMDIR/ftplugin/sbim.vim
+eval ${INSTALLCMD}sbim.syntax.vim $VIMDIR/syntax/sbim.vim
+eval ${INSTALLCMD}superbasic.syntax.vim $VIMDIR/ftplugin/superbasic.vim
 
 # vim: textwidth=64

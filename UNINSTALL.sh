@@ -31,8 +31,9 @@
 # History
 
 # 2015-12-26: First version.
-# 2016-01-19: Updated header.
-# 2016-01-25: Added <ftplugin/sbim.vim>.
+# 2016-01-19: Update header.
+# 2016-01-25: Add <ftplugin/sbim.vim>.
+# 2016-12-09: Add syntax files.
 
 # ##############################################################
 
@@ -41,4 +42,6 @@
 rm -f $VIMDIR/sbim.vim
 rm -f $VIMDIR/ftdetect/sbim.vim
 rm -f $VIMDIR/ftplugin/sbim.vim
+rm -f $VIMDIR/syntax/sbim.vim
+rm -f $VIMDIR/syntax/superbasic.vim
 
