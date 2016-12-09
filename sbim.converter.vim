@@ -1,30 +1,33 @@
-" sbim.vim
+" sbim.converter.vim
+" (~/.vim/sbim.vim)
 
-" SBim
+" This file is part of SBim
+" http://programandala.net/en.program.sbim.html
 
 " ==============================================================
 " Description
 
-" SBim converts S*BASIC source code written in the SBim format
-" to an ordinary S*BASIC file ready to be loaded by a S*BASIC
-" interpreter.
+" This VimL program converts S*BASIC source code written in the
+" SBim format to an ordinary S*BASIC file ready to be loaded by
+" a S*BASIC interpreter.
 
 " ==============================================================
 " Author and license
 
-" Copyright (C) 2011,2012,2015 Marcos Cruz (programandala.net)
+" Author: Marcos Cruz (programandala.net), 2011,2012,2015,2016 
 
 " You may do whatever you want with this work, so long as you
-" retain the copyright notice(s) and this license in all
-" redistributed copies and derived works. There is no warranty.
+" retain the copyright/authorship/acknowledgment/credit
+" notice(s) and this license in all redistributed copies and
+" derived works.  There is no warranty.
 
 " ==============================================================
 " History
 
 " See at the end of the file.
 
-
 " ==============================================================
+" Code
 
 function! SBimRenum()
 
@@ -77,12 +80,18 @@ function! SBimClean()
   " old format (vertical bar to split the lines):
   " silent %s,|\n,,e
   " Join the splitted lines (the vertical bar is used, because
-  " the backslash is a printing separator is S*BASIC)
+  " the backslash is a printing separator in S*BASIC)
 
   " new format (backslash to split the lines):
   silent %s,\\\s*\n,,e " Join the splitted lines 
 
   echo 'Splitted lines joined.'
+
+endfunction
+
+function! SBimConfig()
+
+  call SBimGetFirstLine()
 
 endfunction
 
@@ -102,11 +111,41 @@ function! SBimGetFirstLine()
   normal gg
   if search('^\s*#firstline\s\+[0-9]\+\>','Wc')
     " Store the number into register 'l':
-    normal w"lyw
+    normal ww"lyw
     " And then into the variable:
     let s:firstLine=getreg('l',1)
   endif
   echo 'First line number: '.s:firstLine
+
+endfunction
+
+function! SBimInclude()
+
+  " Execute all '#include' directives.
+
+  " Syntax:
+  " #include filename
+
+  " Warning: nested including is possible, but no recursion check is made!
+
+  call cursor(1,1) " Go to the top of the file.
+  let l:includedFiles=0 " Counter
+  while search('^\s*#include\s\+','Wc')
+    let l:includedFiles += 1
+    let l:filename=matchstr(getline('.'),'\S\+.*',8)
+    call setline('.','// <<< start of included file '.l:filename)
+    call append('.','// >>> end of included file '.l:filename)
+    let l:filecontent=readfile(s:sourceFileDir.'/'.l:filename)
+    call append('.',l:filecontent)
+  endwhile
+
+  if l:includedFiles==0
+    echo 'No file included'
+  elseif l:includedFiles==1
+    echo 'One file included'
+  else
+    echo l:includedFiles 'files included'
+  endif
 
 endfunction
 
@@ -181,6 +220,13 @@ function! SBimBASfile()
   " with the "_bas" extension added
   " and open it for editing.
 
+
+  " Filename of the source file, without path
+  "let s:sourceFilename=fnamemodify(expand('%'),':t')
+
+  " Absolute directory of the source file
+  let s:sourceFileDir=fnamemodify(expand('%'),':p:h')
+
   silent update " Write the current SBim file if needed
   split " Split the window
   silent write! %_bas " Save a copy with the _bas extension added
@@ -197,12 +243,13 @@ function! SBim2SB()
   let s:ignoreCaseBackup=&ignorecase
   set ignorecase
 
-  call SBimGetFirstLine()
-
   call SBimBASfile()
+  call SBimInclude()
+  call SBimConfig()
   call SBimClean()
   call SBimLabels()
   call SBimRenum()
+
   silent w
   silent bw
   echo 'S*BASIC file saved and closed.'
@@ -224,53 +271,65 @@ nmap <silent> ,sb :call SBim2SB()<CR>
 " ==============================================================
 " History
 
-" 2011-08-13: First version, named sb2sbasic.vim, based on vim2mb.vim ("Vim to
-" MasterBASIC"), by the same author. [vim2mb was the origin of MBim].
+" 2011-08-13: First version, named sb2sbasic.vim, based on
+" vim2mb.vim ("Vim to MasterBASIC"), by the same author. [vim2mb
+" was the origin of MBim].
 "
-"
-" 2011-08-16: Added removing of blanks (tabs or spaces) at the end of lines;
-" added start line parameter for renumbering; created alternative shortcut key
-" to create boot files.
+" 2011-08-16: Added removing of blanks (tabs or spaces) at the
+" end of lines; added start line parameter for renumbering;
+" created alternative shortcut key to create boot files.
 "
 " 2011-08-25: Added C style comments, block and inline.
 "
-" 2011-09-01: Renamed to sbim2bas.vim; own renum function instead of using
-" that of line_numbers.vim; all functions renamed with the "SBim" prefix.
+" 2011-09-01: Renamed to sbim2bas.vim; own renum function
+" instead of using that of line_numbers.vim; all functions
+" renamed with the "SBim" prefix.
 "
-" 2011-09-26: Renamed to sbim2sb.vim; some functions renamed; some comments
-" improved.
+" 2011-09-26: Renamed to sbim2sb.vim; some functions renamed;
+" some comments improved.
 "
-" 2011-10-04: Block comments fixed with '\{-}'; 'silent' added to many
-" commands; 'e' flag added to substitutions; custom messages added.
+" 2011-10-04: Block comments fixed with '\{-}'; 'silent' added
+" to many commands; 'e' flag added to substitutions; custom
+" messages added.
 "
-" 2012-01-25: New function SBimLabels(), based on BBimLabels() from BBim.
-" Fixed: lonely labels had to be joined with the next line; optional final ":"
-" removed with labels.
+" 2012-01-25: New function SBimLabels(), based on BBimLabels()
+" from BBim.  Fixed: lonely labels had to be joined with the
+" next line; optional final ":" removed with labels.
 "
-" 2012-01-26: The character to split lines now is backslash instead of the
-" vertical bar.
+" 2012-01-26: The character to split lines now is backslash
+" instead of the vertical bar.
 "
-" 2012-01-28: Improvement: labels are not case sensitive any more.
+" 2012-01-28: Improvement: labels are not case sensitive any
+" more.
 "
-" 2012-01-28: New feature: #firstline command to define the first line that
-" will be used to renumber the final program in S*BASIC.
+" 2012-01-28: New feature: #firstline command to define the
+" first line that will be used to renumber the final program in
+" S*BASIC.
 "
-" 2012-01-28: Improvement: The S*BASIC buffer is actually closed with "bw"
-" ("wq" kept it on the list).
+" 2012-01-28: Improvement: The S*BASIC buffer is actually closed
+" with "bw" ("wq" kept it on the list).
 "
-" 2012-01-29: Improvement: Only one regex, simpler and fixed, to remove empty
-" lines (the old three regex left the first line of the file blank).
+" 2012-01-29: Improvement: Only one regex, simpler and fixed, to
+" remove empty lines (the old three regex left the first line of
+" the file blank).
 "
-" 2012-01-29: Fixed: Spaces or tabs at the end of line, after the split bar,
-" are ignored.
+" 2012-01-29: Fixed: Spaces or tabs at the end of line, after
+" the split bar, are ignored.
 "
-" 2012-02-01: Bug found. The label translation loop doesn't end in some cases.
+" 2012-02-01: Bug found. The label translation loop doesn't end
+" in some cases.
 "
-" 2012-02-15: Fixed? The 'c' parameter was removed from search() in the label
-" translation loop.
+" 2012-02-15: Fixed? The 'c' parameter was removed from search()
+" in the label translation loop.
 "
-" 2015-12-26: Changed the layout of the source. Renamed the program to "SBim".
-" Changed the license.
+" 2015-12-26: Changed the layout of the source. Renamed the
+" program to "SBim".  Changed the license. 
+"
+" 2016-01-13: Fixed `SBimGetFirstLine()`: the directive was
+" yanked instead of the line number.
+"
+" 2016-01-19: Typo. Updated header.
+"
+" 2016-01-25: Added `#include` directive.
 
-
-" vim: textwidth=64
+" vim: textwidth=64:ts=2:sw=2:sts=2:et

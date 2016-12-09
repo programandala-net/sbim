@@ -1,0 +1,31 @@
+= SBim
+:author: Marcos Cruz (programandala.net)
+:revdate: 2016-03-06
+
+// This file is part of SBim
+// http://programandala.net/en.program.sbim.html
+
+// This file is written in AsciiDoc/Asciidoctor format
+// (http://asciidoctor.org)
+
+// You may do whatever you want with this work, so long as you
+// retain the copyright/authorship/acknowledgment/credit
+// notice(s) and this license in all redistributed copies and
+// derived works.  There is no warranty.
+
+SBim is a preprocessor for S*BASIC (QL SuperBASIC and SMSQ SBASIC).
+SBim is written in VimL, the programming language of the Vim editor.
+
+Mode details (at the moment, only in Spanish):
+http://programandala.net/es.programa.sbim.html
+
+== Install
+
+. Edit CONFIG.sh to suit your installation directory and the way files
+  should installed. Uncomment only the desired options. Defaults:
+  user-wide installation with symbolic links.
+. Execute INSTALL.sh. 
+
+==  Uninstall
+
+. Execute UNINSTALL.sh.
