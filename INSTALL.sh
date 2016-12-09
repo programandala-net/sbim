@@ -3,7 +3,7 @@
 # INSTALL.sh
 
 # This file is part of SBim
-# http://programandala.net/en.program.sbim.html
+# http://programandala.net/es.programa.sbim.html
 
 # ##############################################################
 # Author and license

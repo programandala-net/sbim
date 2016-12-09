@@ -3,7 +3,7 @@
 :revdate: 2016-12-09
 
 // This file is part of SBim
-// http://programandala.net/en.program.sbim.html
+// http://programandala.net/es.programa.sbim.html
 
 // This file is written in AsciiDoc/Asciidoctor format
 // (http://asciidoctor.org)

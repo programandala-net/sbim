@@ -3,7 +3,7 @@
 " Convert a S*BASIC program to the SBim format.
 
 " This file is part of SBim
-" http://programandala.net/en.program.sbim.html
+" http://programandala.net/es.programa.sbim.html
 
 " Author: Marcos Cruz (programandala.net), 2016
 

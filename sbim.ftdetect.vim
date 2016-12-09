@@ -4,7 +4,7 @@
 " Vim filetype detect for SBim (S*BASIC improved)
 
 " This file is part of SBim
-" http://programandala.net/en.program.sbim.html
+" http://programandala.net/es.programa.sbim.html
 
 " Author: Marcos Cruz (programandala.net), 2015, 2016
 
