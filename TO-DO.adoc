@@ -1,0 +1,10 @@
+= SBim to-do list
+:author: Marcos Cruz (programandala.net)
+:revdate: 2017-09-10
+
+2017-09-10:
+
+- Make the converter usable from the command line.
+- Inform about the keyboard mapping.
+- Optionally remove the original filename extension.
+
