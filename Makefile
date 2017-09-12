@@ -5,7 +5,7 @@
 
 # Author: Marcos Cruz (programandala.net), 2017
 
-# Last modified 201709122017
+# Last modified 201709130015
 # See change log at the end of the file
 
 # ==============================================================
@@ -40,8 +40,8 @@ install:
 	install -D --m 644 sbim.converter.vim ~/.vim/sbim.vim
 	install -D --m 644 sbim.ftdetect.vim ~/.vim/ftdetect/sbim.vim
 	install -D --m 644 sbim.ftplugin.vim ~/.vim/ftplugin/sbim.vim
-	install -D --m 644 sbim.syntax.vim ~/.vim/syntax/sbim.vim
-	install -D --m 644 superbasic.syntax.vim ~/.vim/syntax/superbasic.vim
+	install -D --m 644 syntax/sbim.vim ~/.vim/syntax/sbim.vim
+	install -D --m 644 syntax/superbasic.vim ~/.vim/syntax/superbasic.vim
 	install -D --m 755 sbim.sh $(BINDIR)/sbim
 
 .PHONY: uninstall
@@ -58,3 +58,5 @@ uninstall:
 
 # 2017-09-12: First version, to replace <INSTALL.sh> and
 # <UNINSTALL.sh>.
+#
+# 2017-09-13: Update paths.
