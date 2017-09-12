@@ -31,6 +31,7 @@ install -D --m 644 sbim.ftdetect.vim ~/.vim/ftdetect/sbim.vim
 install -D --m 644 sbim.ftplugin.vim ~/.vim/ftplugin/sbim.vim
 install -D --m 644 sbim.syntax.vim ~/.vim/syntax/sbim.vim
 install -D --m 644 superbasic.syntax.vim ~/.vim/syntax/superbasic.vim
+install -D --m 755 sbim.sh ~/bin/sbim
 
 exit 0
 
@@ -47,3 +48,5 @@ exit 0
 #
 # 2017-09-11: Fix installation of SuperBASIC syntax file.  Rewrite
 # with `install`. Remove <CONFIG.sh>. Use <~/.vim>.
+#
+# 2017-09-12: Add <sbim.sh>.

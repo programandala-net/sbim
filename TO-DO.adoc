@@ -1,6 +1,6 @@
 = SBim to-do list
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-09-10
+:revdate: 2017-09-12
 
 2017-09-10:
 
@@ -8,3 +8,8 @@
 - Inform about the keyboard mapping.
 - Optionally remove the original filename extension.
 
+2017-09-12:
+
+- Add converter's config parameters to <sbim.sh>.
+- Add `-v --version` parameter to <sbim.sh> ('grep' the source to get
+  the version).

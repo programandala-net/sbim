@@ -4,6 +4,9 @@
 " This file is part of SBim
 " http://programandala.net/es.programa.sbim.html
 
+" Last modified 201709120159
+" See change log at the end of the file
+
 " ==============================================================
 " Description
 
@@ -14,7 +17,8 @@
 " ==============================================================
 " Author and license
 
-" Author: Marcos Cruz (programandala.net), 2011,2012,2015,2016 
+" Author: Marcos Cruz (programandala.net), 2011, 2012, 2015,
+" 2016, 2017
 
 " You may do whatever you want with this work, so long as you
 " retain the copyright/authorship/acknowledgment/credit
@@ -22,12 +26,6 @@
 " derived works.  There is no warranty.
 
 " ==============================================================
-" History
-
-" See at the end of the file.
-
-" ==============================================================
-" Code
 
 function! SBimRenum()
 
@@ -214,12 +212,13 @@ function! SBimLabels()
 
 endfunction
 
-function! SBimBASfile()
+function! SBimOutputFile(outputFile)
 
-  " Create a copy of the current SBim file
-  " with the "_bas" extension added
-  " and open it for editing.
-
+  if empty(a:outputFile)
+    let l:outputFile=expand('%').'_bas'
+  else
+    let l:outputFile=a:outputFile
+  endif
 
   " Filename of the source file, without path
   "let s:sourceFilename=fnamemodify(expand('%'),':t')
@@ -229,8 +228,12 @@ function! SBimBASfile()
 
   silent update " Write the current SBim file if needed
   split " Split the window
-  silent write! %_bas " Save a copy with the _bas extension added
-  silent edit %_bas " Open it for editing
+
+  " Save a copy of the input file as output file:
+  silent execute 'write! '.l:outputFile
+
+  " Open the output file for editing:
+  silent execute 'edit '.l:outputFile
   set fileencoding=latin1
   set fileformat=unix " Force NL (char 10) as end of line
   
@@ -238,12 +241,12 @@ function! SBimBASfile()
 
 endfunction
 
-function! SBim2SB()
+function! SBim(outputFile)
 
   let s:ignoreCaseBackup=&ignorecase
   set ignorecase
 
-  call SBimBASfile()
+  call SBimOutputFile(a:outputFile)
   call SBimInclude()
   call SBimConfig()
   call SBimClean()
@@ -266,10 +269,10 @@ endfunction
 
 " Shortkey ',sb' in normal mode
 " to create an S*BASIC file:
-nmap <silent> ,sb :call SBim2SB()<CR>
+nmap <silent> ,sb :call SBim()<CR>
 
 " ==============================================================
-" History
+" Change log
 
 " 2011-08-13: First version, named sb2sbasic.vim, based on
 " vim2mb.vim ("Vim to MasterBASIC"), by the same author. [vim2mb
@@ -331,5 +334,7 @@ nmap <silent> ,sb :call SBim2SB()<CR>
 " 2016-01-19: Typo. Updated header.
 "
 " 2016-01-25: Added `#include` directive.
+"
+" 2017-09-12: Make the output file configurable.
 
 " vim: textwidth=64:ts=2:sw=2:sts=2:et

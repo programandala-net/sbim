@@ -31,6 +31,7 @@ rm -f ~/.vim/ftdetect/sbim.vim
 rm -f ~/.vim/ftplugin/sbim.vim
 rm -f ~/.vim/syntax/sbim.vim
 rm -f ~/.vim/syntax/superbasic.vim
+rm -f ~/bin/sbim
 
 exit 0
 
@@ -46,3 +47,5 @@ exit 0
 # 2016-12-09: Add syntax files.
 #
 # 2017-09-11: Remove <CONFIG.sh>. Use <~/.vim>.
+#
+# 2017-09-12: Add <sbim.sh>.
