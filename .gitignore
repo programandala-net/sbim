@@ -1,5 +1,3 @@
-*.zip
-make_package.sh
 _meta/
 
 # vim: filetype=config
