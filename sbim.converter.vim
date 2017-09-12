@@ -4,7 +4,7 @@
 " This file is part of SBim
 " http://programandala.net/es.programa.sbim.html
 
-" Last modified 201709120159
+" Last modified 201709122332
 " See change log at the end of the file
 
 " ==============================================================
@@ -59,9 +59,10 @@ function! SBimClean()
   silent %s,\t\+, ,ge " Remove tabs
   echo 'Tabs removed.'
 
-  silent %s,^\s*#.*$,,e " Remove the # line metacomments
-  silent %s,\s*\/\/.*$,,e " Remove the // line comments
-  silent %s,^\s*\/\*\_.\{-}\*\/,,e " Remove the /* */ block comments
+  silent %s,\(^\s*\|\s\+\)'\s.*$,,e " Remove the BASIC-style line comments
+  silent %s,\(^\s*\|\s\+\)#\s.*$,,e " Remove the Bash-style line comments
+  silent %s,\(^\s*\|\s\+\)\/\/\s.*$,,e " Remove the C-style line comments
+  silent %s,^\s*\/\*\_.\{-}\*\/,,e " Remove the C-style block comments
 
   echo 'Comments removed.'
 
@@ -335,6 +336,9 @@ nmap <silent> ,sb :call SBim()<CR>
 "
 " 2016-01-25: Added `#include` directive.
 "
-" 2017-09-12: Make the output file configurable.
+" 2017-09-12: Make the output file configurable. Improve the
+" line comments with one mandatory sourrounding space.  Allow
+" Bash-style line comments at the end of the line. Add
+" BASIC-style line comments with a single quote.
 
 " vim: textwidth=64:ts=2:sw=2:sts=2:et
