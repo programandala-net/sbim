@@ -4,7 +4,7 @@
 " This file is part of SBim
 " http://programandala.net/es.programa.sbim.html
 
-" Last modified 201709122332
+" Last modified 201709131657
 " See change log at the end of the file
 
 " ==============================================================
@@ -59,9 +59,9 @@ function! SBimClean()
   silent %s,\t\+, ,ge " Remove tabs
   echo 'Tabs removed.'
 
-  silent %s,\(^\s*\|\s\+\)'\s.*$,,e " Remove the BASIC-style line comments
-  silent %s,\(^\s*\|\s\+\)#\s.*$,,e " Remove the Bash-style line comments
-  silent %s,\(^\s*\|\s\+\)\/\/\s.*$,,e " Remove the C-style line comments
+  silent %s,\(^\s*\|\s\+\)'\(\s.*\)\?$,,e " Remove the BASIC-style line comments
+  silent %s,\(^\s*\|\s\+\)#\(\s.*\)\?$,,e " Remove the Bash-style line comments
+  silent %s,\(^\s*\|\s\+\)\/\/\(\s.*\)\?$,,e " Remove the C-style line comments
   silent %s,^\s*\/\*\_.\{-}\*\/,,e " Remove the C-style block comments
 
   echo 'Comments removed.'

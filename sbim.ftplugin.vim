@@ -6,7 +6,7 @@
 " This file is part of SBim
 " http://programandala.net/es.programa.sbim.html
 
-" Author: Marcos Cruz (programandala.net), 2012, 2016
+" Author: Marcos Cruz (programandala.net), 2012, 2016, 2017
 
 " License:
 
@@ -18,9 +18,10 @@
 " History:
 
 " 2012-12-16: First version.
-" 2016-01-21: Added `formatoptions` and `commentstring`.
+" 2016-01-21: Add `formatoptions` and `commentstring`.
+" 2017-09-13: Add single-quote line comments.
 
-setlocal comments=b:#,b:\/\/
+setlocal comments=b:#,b:\/\/,b:'
 setlocal expandtab
 setlocal foldmethod=marker
 setlocal ignorecase
@@ -35,4 +36,4 @@ setlocal formatoptions=cqorj
 " See ":help fo-table".
 
 " Used by the Vim-Commentary plugin:
-setlocal commentstring=\/\/%s
+setlocal commentstring='%s
