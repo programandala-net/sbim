@@ -20,8 +20,9 @@
 " 2012-12-16: First version.
 " 2016-01-21: Add `formatoptions` and `commentstring`.
 " 2017-09-13: Add single-quote line comments.
+" 2017-09-20: Remove C-style and Bash-style comments.
 
-setlocal comments=b:#,b:\/\/,b:'
+setlocal comments=b:'
 setlocal expandtab
 setlocal foldmethod=marker
 setlocal ignorecase

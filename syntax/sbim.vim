@@ -4,7 +4,7 @@
 " Author:      Marcos Cruz (programandala.net)
 " License:     Vim license (GPL compatible)
 " URL:         http://programandala.net/es.programa.sbim_vim_syntax_file.html
-" Updated:     2017-09-12
+" Updated:     2017-09-20
 
 " See change log at the end of the file
 
@@ -28,15 +28,8 @@ syn keyword sbimTodo contained todo fixme xxx
 
 syn region sbimLabel start="^\s*\(label\s\+\)\?@[a-zA-Z0-9_]\+" end="\>"
 
-" syn region sbimMetaComment start="^\s*#[# ]*" end="$" contains=sbimTodo
-"syn region sbimCommentedOut start="^#[^# ]" end="$" contains=sbimTodo 
-syn match sbimCommentedOut "^\s*#.*$"
-syn region sbimLineComment start="^\s*//" end="$" contains=sbimTodo
-syn region sbimLineComment start="\s//\s" end="$" contains=sbimTodo
-syn region sbimLineComment start="^\s*'" end="$" contains=sbimTodo
 syn region sbimLineComment start="^\s*'\s" end="$" contains=sbimTodo
 syn region sbimLineComment start="\s'\s" end="$" contains=sbimTodo
-syn region sbimBlockComment start="^\s*/\*" end="\*/" contains=sbimTodo 
 
 syn match sbimPreProc "^#firstline\s\+\d\+"
 syn match sbimPreProc "^#include\s\+\S\+"
@@ -47,8 +40,6 @@ syn match sbimPreProc "^#include\s\+\S\+"
 syn match sbimSplittedLine "\\\s*\(//.*\)\?$" contains=sbimLineComment
 
 hi def link sbimMetaComment Comment
-"hi def link sbimCommentedOut Ignore
-hi def link sbimCommentedOut Comment
 hi def link sbimLineComment Comment
 hi def link sbimBlockComment Comment
 "hi def link sbimSplittedLine Ignore
@@ -90,4 +81,8 @@ let b:current_syntax = "sbim"
 " 2016-01-25: Added `#include`.
 "
 " 2017-09-12: Update line comments.
+"
+" 2017-09-16: Modify `'` line comment.
+"
+" 2017-09-20: Update: Remove comments other than `'`.
 

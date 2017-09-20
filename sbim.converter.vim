@@ -4,7 +4,7 @@
 " This file is part of SBim
 " http://programandala.net/es.programa.sbim.html
 
-" Last modified 201709131657
+" Last modified 201709201333
 " See change log at the end of the file
 
 " ==============================================================
@@ -59,31 +59,16 @@ function! SBimClean()
   silent %s,\t\+, ,ge " Remove tabs
   echo 'Tabs removed.'
 
-  silent %s,\(^\s*\|\s\+\)'\(\s.*\)\?$,,e " Remove the BASIC-style line comments
-  silent %s,\(^\s*\|\s\+\)#\(\s.*\)\?$,,e " Remove the Bash-style line comments
-  silent %s,\(^\s*\|\s\+\)\/\/\(\s.*\)\?$,,e " Remove the C-style line comments
-  silent %s,^\s*\/\*\_.\{-}\*\/,,e " Remove the C-style block comments
-
+  silent %s,\(^\s*\|\s\+\)'\(\s.*\)\?$,,e " Remove line comments
   echo 'Comments removed.'
 
   silent %s,^\s*\n,,ge " Remove the empty lines
-
   echo 'Empty lines removed.'
 
-  "silent %s,^\s*,,e " Remove indentation
-  "silent %s,\s\+$,,e " Remove ending blanks
   silent %s,^\s*\(.\+\)\s*$,\1,e " Remove blanks
-
   echo 'Indentation and blanks removed.'
 
-  " old format (vertical bar to split the lines):
-  " silent %s,|\n,,e
-  " Join the splitted lines (the vertical bar is used, because
-  " the backslash is a printing separator in S*BASIC)
-
-  " new format (backslash to split the lines):
   silent %s,\\\s*\n,,e " Join the splitted lines 
-
   echo 'Splitted lines joined.'
 
 endfunction
@@ -340,5 +325,8 @@ nmap <silent> ,sb :call SBim()<CR>
 " line comments with one mandatory sourrounding space.  Allow
 " Bash-style line comments at the end of the line. Add
 " BASIC-style line comments with a single quote.
+"
+" 2017-09-20: Remove support for C-style and Bash-style
+" comments.
 
 " vim: textwidth=64:ts=2:sw=2:sts=2:et

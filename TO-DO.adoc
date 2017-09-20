@@ -1,15 +1,18 @@
 = SBim to-do list
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-09-12
+:revdate: 2017-09-20
 
 2017-09-10:
 
-- Make the converter usable from the command line.
 - Inform about the keyboard mapping.
-- Optionally remove the original filename extension.
 
 2017-09-12:
 
 - Add converter's config parameters to <sbim.sh>.
 - Add `-v --version` parameter to <sbim.sh> ('grep' the source to get
   the version).
+
+2017-09-20:
+
+- Add a "quiet" or "verbose" parameter.
+- Add `#renum` directive.

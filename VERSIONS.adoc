@@ -1,13 +1,23 @@
 = Versions of SBim
-:author: Marcos Cruz (programandala.net), 2015, 2016
-:revdate: 2016-12-09
+:author: Marcos Cruz (programandala.net)
+:revdate: 2017-09-20
 
 // This file is part of SBim
 // http://programandala.net/es.programa.sbim.html
 
+== 2.0.0
+
+Under development.
+
+- Improved installation method.
+- Console command.
+- Configurable output file.
+- Replace C-style and Bash-style comments with BASIC-style
+  single-quote comments.
+
 == 1.0.0
 
-released on 2016-12-09.
+Released on 2016-12-09.
 
 New:
 
