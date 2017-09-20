@@ -19,9 +19,7 @@
 
 " 2015-12-26: Start.
 " 2016-01-19: Updated header.
-
-autocmd BufNewFile,BufRead *_sbim setlocal filetype=sbim
-autocmd BufNewFile,BufRead *_sbim runtime sbim.vim
+" 2017-09-20: Remove the "_sbim" extension.
 
 autocmd BufNewFile,BufRead *.sbim setlocal filetype=sbim
 autocmd BufNewFile,BufRead *.sbim runtime sbim.vim
