@@ -4,7 +4,7 @@
 " This file is part of SBim
 " http://programandala.net/es.programa.sbim.html
 
-" Last modified 201709201333
+" Last modified 201709210005
 " See change log at the end of the file
 
 " ==============================================================
@@ -253,9 +253,8 @@ function! SBim(outputFile)
 
 endfunction
 
-" Shortkey ',sb' in normal mode
-" to create an S*BASIC file:
-nmap <silent> ,sb :call SBim()<CR>
+" Shortkey ',sb' in normal mode to create an S*BASIC file:
+nmap <silent> ,sb :call SBim("")<CR>
 
 " ==============================================================
 " Change log
@@ -327,6 +326,6 @@ nmap <silent> ,sb :call SBim()<CR>
 " BASIC-style line comments with a single quote.
 "
 " 2017-09-20: Remove support for C-style and Bash-style
-" comments.
+" comments. Fix the call in the map (missing parameter).
 
 " vim: textwidth=64:ts=2:sw=2:sts=2:et
