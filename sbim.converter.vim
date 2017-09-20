@@ -4,7 +4,7 @@
 " This file is part of SBim
 " http://programandala.net/es.programa.sbim.html
 
-" Last modified 201709210005
+" Last modified 201709210006
 " See change log at the end of the file
 
 " ==============================================================
@@ -117,8 +117,8 @@ function! SBimInclude()
   while search('^\s*#include\s\+','Wc')
     let l:includedFiles += 1
     let l:filename=matchstr(getline('.'),'\S\+.*',8)
-    call setline('.','// <<< start of included file '.l:filename)
-    call append('.','// >>> end of included file '.l:filename)
+    call setline('.',"' <<< start of included file ".l:filename)
+    call append('.',"' >>> end of included file ".l:filename)
     let l:filecontent=readfile(s:sourceFileDir.'/'.l:filename)
     call append('.',l:filecontent)
   endwhile
@@ -327,5 +327,7 @@ nmap <silent> ,sb :call SBim("")<CR>
 "
 " 2017-09-20: Remove support for C-style and Bash-style
 " comments. Fix the call in the map (missing parameter).
+"
+" 2017-09-21: Remove C-style comment added
 
 " vim: textwidth=64:ts=2:sw=2:sts=2:et
