@@ -4,7 +4,7 @@
 " Author:   Marcos Cruz (programandala.net)
 " License:  Vim license (GPL compatible)
 " URL:      http://programandala.net/en.program.superbasic_vim_syntax_file.html
-" Updated:  2016-01-31
+" Updated:  2017-09-25
 
 " This syntax file is not a complete implementation yet.
 
@@ -848,6 +848,13 @@ syn keyword superbasicFunction DMEDIUM_TOTAL
 syn keyword superbasicFunction DMEDIUM_FREE
 syn keyword superbasicProcedure ET
 syn keyword superbasicProcedure HGET
+syn keyword superbasicProcedure HOME_CSET
+syn keyword superbasicFunction HOME_CURR$
+syn keyword superbasicFunction HOME_DEF$
+syn keyword superbasicFunction HOME_DIR$
+syn keyword superbasicFunction HOME_FILE$
+syn keyword superbasicProcedure HOME_SET
+syn keyword superbasicFunction HOME_VER$
 syn keyword superbasicProcedure HPUT
 syn keyword superbasicProcedure LGET
 syn keyword superbasicProcedure LPUT
@@ -1108,4 +1115,5 @@ let b:current_syntax = "superbasic"
 " 2016-01-13: Added some SMSQmulator keywords.
 " 2016-01-30: Added two SMSQmulator keywords: flp_drive, flp_drive$.
 " 2016-01-31: Added more SMSQmulator keywords.
+" 2017-09-25: Add the "home_" family.
 

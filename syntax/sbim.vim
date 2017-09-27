@@ -4,7 +4,7 @@
 " Author:      Marcos Cruz (programandala.net)
 " License:     Vim license (GPL compatible)
 " URL:         http://programandala.net/es.programa.sbim_vim_syntax_file.html
-" Updated:     2017-09-20
+" Updated:     2017-09-27
 
 " See change log at the end of the file
 
@@ -30,13 +30,12 @@ syn region sbimLabel start="^\s*\(label\s\+\)\?@[a-zA-Z0-9_]\+" end="\>"
 
 syn region sbimLineComment start="^\s*'\s" end="$" contains=sbimTodo
 syn region sbimLineComment start="\s'\s" end="$" contains=sbimTodo
+syn match sbimLineComment "^\s*'$"
 
 syn match sbimPreProc "^#firstline\s\+\d\+"
 syn match sbimPreProc "^#include\s\+\S\+"
 
-" old format (vertical bar to split the lines):
-"syn match sbimSplittedLine "|\s*\(//.*\)*$" contains=sbimLineComment
-" new format (backslash to split the lines):
+" backslash to split the lines:
 syn match sbimSplittedLine "\\\s*\(//.*\)\?$" contains=sbimLineComment
 
 hi def link sbimMetaComment Comment
@@ -85,4 +84,5 @@ let b:current_syntax = "sbim"
 " 2017-09-16: Modify `'` line comment.
 "
 " 2017-09-20: Update: Remove comments other than `'`.
-
+"
+" 2017-09-27: Support emtpy `'` line comments.
