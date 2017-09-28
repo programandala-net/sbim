@@ -4,7 +4,7 @@
 " This file is part of SBim
 " http://programandala.net/es.programa.sbim.html
 
-" Last modified 201709281316
+" Last modified 201709281324
 " See change log at the end of the file
 
 " ==============================================================
@@ -258,8 +258,8 @@ function! SBim(outputFile)
 
 endfunction
 
-" Shortkey ',sb' in normal mode to create an S*BASIC file:
-nmap <silent> ,sb :call SBim("")<CR>
+" Shortkey '_bas' in normal mode to create an S*BASIC file:
+nmap <silent> _bas :call SBim("")<CR>
 
 " ==============================================================
 " Change log

@@ -12,9 +12,10 @@ Under development.
 - Improved installation method.
 - Console command.
 - Configurable output file.
-- Replace C-style and Bash-style comments with BASIC-style
-  single-quote comments.
-- Support setting filetype in a Vim modeline.
+- C-style and Bash-style comments are not supported anymore.  They
+  have been replaced with BASIC-style single-quote comments.
+- Setting filetype in a Vim modeline is supported.
+- The old mapping ",sb" has been replaced with "_bas".
 
 == 1.0.0
 
