@@ -1,6 +1,6 @@
 = Versions of SBim
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-09-20
+:revdate: 2017-09-28
 
 // This file is part of SBim
 // http://programandala.net/es.programa.sbim.html
@@ -14,6 +14,7 @@ Under development.
 - Configurable output file.
 - Replace C-style and Bash-style comments with BASIC-style
   single-quote comments.
+- Support setting filetype in a Vim modeline.
 
 == 1.0.0
 

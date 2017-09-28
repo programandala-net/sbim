@@ -4,7 +4,7 @@
 " This file is part of SBim
 " http://programandala.net/es.programa.sbim.html
 
-" Last modified 201709210006
+" Last modified 201709281316
 " See change log at the end of the file
 
 " ==============================================================
@@ -26,6 +26,11 @@
 " derived works.  There is no warranty.
 
 " ==============================================================
+
+if exists("*SBim")
+  " Function `SBim` is already defined.
+  finish
+endif
 
 function! SBimRenum()
 

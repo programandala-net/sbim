@@ -1,6 +1,6 @@
 = SBim to-do list
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-09-20
+:revdate: 2017-09-29
 
 2017-09-10:
 
@@ -16,3 +16,7 @@
 
 - Add a "quiet" or "verbose" parameter.
 - Add `#renum` directive.
+
+2017-09-28:
+
+- Use mapping "_bas" instead of ",sb".

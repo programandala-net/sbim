@@ -6,7 +6,7 @@
 " This file is part of SBim
 " http://programandala.net/es.programa.sbim.html
 
-" Author: Marcos Cruz (programandala.net), 2015, 2016
+" Author: Marcos Cruz (programandala.net), 2015, 2016, 2017
 
 " License:
 
@@ -20,6 +20,8 @@
 " 2015-12-26: Start.
 " 2016-01-19: Updated header.
 " 2017-09-20: Remove the "_sbim" extension.
+" 2017-09-28: Use `autocmd FileType` in order to make modelines
+" effective.
 
 autocmd BufNewFile,BufRead *.sbim setlocal filetype=sbim
-autocmd BufNewFile,BufRead *.sbim runtime sbim.vim
+autocmd FileType sbim runtime sbim.vim
