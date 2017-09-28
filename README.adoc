@@ -1,6 +1,6 @@
 = SBim
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-02-16
+:revdate: 2017-09-28
 
 // This file is part of SBim
 // http://programandala.net/es.programa.sbim.html
@@ -13,40 +13,39 @@
 // notice(s) and this license in all redistributed copies and
 // derived works.  There is no warranty.
 
-SBim is a preprocessor for S*BASIC (QL SuperBASIC and SMSQ SBASIC).
-SBim is written in VimL, the programming language of the Vim editor.
+SBim is an S*BASIC preprocessor  written in Vimscript, the
+programming language of the http://www.vim.org[Vim editor].
 
-More details (at the moment, only in Spanish):
-http://programandala.net/es.programa.sbim.html
+"S*BASIC" means
+http://superbasic-manual.readthedocs.io/en/latest/[SuperBASIC and its improved descendant SBASIC].
 
-== Install
-
-. Edit CONFIG.sh to suit your installation directory and the way files
-  should be installed. Uncomment only the desired options. Defaults:
-  user-wide installation with symbolic links.
-. Execute `INSTALL.sh`.
-
-==  Uninstall
-
-. Execute `UNINSTALL.sh`.
+Project home page: http://programandala.net/en.program.sbim.html
 
 == Files
 
-CONFIG.sh             :: the install options, to be edited
-INSTALL.sh            :: the installer
 LICENSE.txt           :: the license
+Makefile              :: used by `make` to (un)install SBim
 README.adoc           :: this file
-UNINSTALL.sh          :: the uninstaller
-VERSIONS.adoc         :: the versions
+VERSIONS.adoc         :: the versions history
 sbasic2sbim.vim       :: a simple converter from S*BASIC to SBim
 sbim.converter.vim    :: the converter from SBim to actual S*BASIC
 sbim.ftdetect.vim     :: the Vim filetype detecter for SBim
 sbim.ftplugin.vim     :: the Vim filetype plugin for SBim
-sbim.syntax.vim       :: the Vim syntax file for SBim
-superbasic.syntax.vim :: the Vim syntax file for SuperBASIC
+syntax/sbim.vim       :: the Vim syntax file for SBim
+syntax/superbasic.vim :: the Vim syntax file for SuperBASIC
 
-Note: `sbasic2sbim.vim` is not installed by `INSTALL.sh`. It must be
-used manually from Vim. See the source for details.
+Note: `sbasic2sbim.vim` is not installed. It must be used manually
+from Vim. See the source for details.
+
+== Install and uninstall
+
+----
+make install
+make uninstall
+----
+
+The Vim files are installed in <\~/.vim>.
+The CLI command is installed in <\~/bin>.
 
 == Git repository
 
