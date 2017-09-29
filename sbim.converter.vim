@@ -4,7 +4,7 @@
 " This file is part of SBim
 " http://programandala.net/es.programa.sbim.html
 
-" Last modified 201709281810
+" Last modified 201709291146
 " See change log at the end of the file
 
 " ==============================================================
@@ -31,6 +31,41 @@ if exists("*SBim")
   " Function `SBim` is already defined.
   finish
 endif
+
+" ==============================================================
+" Generic functions {{{1
+
+function! Trim(input_string)
+  " Remove trailing spaces from a string.
+  " Reference:
+  " http://stackoverflow.com/questions/4478891/is-there-a-vimscript-equivalent-for-rubys-strip-strip-leading-and-trailing-s
+  return substitute(a:input_string, '^\s*\(.\{-}\)\s*$', '\1', '')
+endfunction
+
+" ==============================================================
+" Cleaning {{{1
+
+function! SBimClean()
+
+  silent %s,\t\+, ,ge " Remove tabs
+  echo 'Tabs removed.'
+
+  silent %s,\(^\s*\|\s\+\)'\(\s.*\)\?$,,e " Remove line comments
+  echo 'Comments removed.'
+
+  silent %s,^\s*\n,,ge " Remove the empty lines
+  echo 'Empty lines removed.'
+
+  silent %s,^\s*\(.\+\)\s*$,\1,e " Remove blanks
+  echo 'Indentation and blanks removed.'
+
+  silent %s,\\\s*\n,,e " Join the splitted lines 
+  echo 'Splitted lines joined.'
+
+endfunction
+
+" ==============================================================
+" Renum
 
 function! SBimRenum()
 
@@ -59,31 +94,6 @@ function! SBimRenum()
 
 endfunction
 
-function! SBimClean()
-
-  silent %s,\t\+, ,ge " Remove tabs
-  echo 'Tabs removed.'
-
-  silent %s,\(^\s*\|\s\+\)'\(\s.*\)\?$,,e " Remove line comments
-  echo 'Comments removed.'
-
-  silent %s,^\s*\n,,ge " Remove the empty lines
-  echo 'Empty lines removed.'
-
-  silent %s,^\s*\(.\+\)\s*$,\1,e " Remove blanks
-  echo 'Indentation and blanks removed.'
-
-  silent %s,\\\s*\n,,e " Join the splitted lines 
-  echo 'Splitted lines joined.'
-
-endfunction
-
-function! SBimConfig()
-
-  call SBimGetFirstLine()
-
-endfunction
-
 function! SBimGetFirstLine()
 
   " Store into s:firstLine the first line number
@@ -91,7 +101,7 @@ function! SBimGetFirstLine()
   " The command #firstline can be used to set
   " the desired line number. Only the first occurence
   " of #firstline will be used; it can be anywhere
-  " in the source but alwayl at the start of a line
+  " in the source but always at the start of a line
   " (with optional indentation).
 
   let s:firstLine=1 " default value
@@ -107,6 +117,9 @@ function! SBimGetFirstLine()
   echo 'First line number: '.s:firstLine
 
 endfunction
+
+" ==============================================================
+" #include {{{1
 
 function! SBimInclude()
 
@@ -137,6 +150,172 @@ function! SBimInclude()
   endif
 
 endfunction
+
+" ==============================================================
+" Conditional conversion {{{1
+
+function! SBimDefine()
+
+  " Search and execute all '#define' directives.
+
+  " There can be any number of '#define' directives, but they
+  " must be alone on their own source lines (with optional
+  " indentation).
+
+  call cursor(1,1) " Go to the top of the file
+  while search('^\s*#define\s\+','Wc')
+    let l:definition=getline('.')
+    let l:tagPos=matchend(l:definition,'^\s*#define\s\+')
+    let l:tag=strpart(l:definition,l:tagPos)
+    if !empty(l:tag)
+      call add(s:definedTags,l:tag)
+    endif
+    call setline('.','')
+  endwhile
+
+  let l:tags=len(s:definedTags)
+  if l:tags==1
+    echo l:tags.' #define directive'
+  elseif l:tags>1
+    echo l:tags.' #define directives'
+  endif
+
+endfunction
+
+function! SBimDefined(needle)
+
+  " Is _needle_ a defined tag?
+
+"  echo "XXX About to search for the <".a:needle."> tag!"
+  let l:found=0 " XXX needed, but why? Otherwise, error: undefined variable
+  for l:tag in s:definedTags
+"      echo 'XXX tag: '.l:tag
+      let l:found=(l:tag==a:needle)
+      if l:found
+          break
+      endif
+  endfor
+  return l:found
+
+endfunction
+
+function! SBimConditionalConversion()
+
+  " Parse and interpret all conditional conversion directives.
+
+  " XXX TODO -- Make the structure nestable.
+
+  " Syntax:
+  "
+  "   #if[n]def tag
+  "     ...
+  "   #else
+  "     ...
+  "   #endif
+
+  " Note: The conditions can not be nested.
+
+  call cursor(1,1)
+
+  let l:unresolvedCondition=0 " flag
+
+  while search('^\s*#if\(\(n\)\?def\|target\)\s\+.\+$','Wc')
+
+    let l:else=0 " flag
+
+"    echo 'XXX first #if[n]def found'
+
+    while line('.')<line('$') " not at the end of the file?
+
+      let l:currentLine=getline('.')
+
+      if l:currentLine=~'^\s*#if\(def\|target\)\s\+.\+'
+        " #IFDEF
+"        echo 'XXX #ifdef found'
+        if l:unresolvedCondition
+          echoerr '`#if[n]def` structures can not be nested'
+          break
+        else
+          call SBimIfdef()
+          let l:unresolvedCondition=1
+        endif
+      elseif l:currentLine=~'^\s*#ifndef\s\+.\+'
+        " #IFNDEF
+"        echo 'XXX #ifndef found ----------------------'
+        if l:unresolvedCondition
+          echoerr '`#ifndef` structures can not be nested'
+          break
+        else
+          call Ifdef()
+          let l:unresolvedCondition=1
+        endif
+"      elseif l:currentLine=~'^\s*#elseifdef\s\+.\+'
+"        " #ELSEIFDEF
+"        call setline('.','')
+"        if !l:unresolvedCondition
+"          " XXX TODO
+"        endif
+"      elseif l:currentLine=~'^\s*#elseifndef\s\+.\+'
+"        " #ELSEIFNDEF
+"        call setline('.','')
+"        if !l:unresolvedCondition
+"          " XXX TODO
+"        endif
+      elseif l:currentLine=~'^\s*#else\s*$'
+        " #ELSE
+"        echo 'XXX #else found'
+        if l:else
+          echoerr 'More than one `#else` in a `#if[n]def` structure'
+          break
+        else
+          let l:else=1
+          call setline('.','')
+          let s:keepSource=!s:keepSource
+        endif
+      elseif l:currentLine=~'^\s*#endif\s*$'
+        " #ENDIF
+"        echo 'XXX #endif found'
+        call setline('.','')
+        let l:unresolvedCondition=0
+        break
+      else
+        if l:unresolvedCondition && !s:keepSource
+            call setline('.','')
+        endif
+      endif
+
+      call cursor(line('.')+1,1) " go to the next line
+
+    endwhile
+
+    if l:unresolvedCondition
+      echoerr '`#if[n]def` or `#endif` at line '.l:ifLineNumber
+    endif
+
+  endwhile
+
+  echo 'Conditional conversion done'
+
+endfunction
+
+function! SBimIfdef()
+
+    let l:ifLineNumber=line('.')
+    let l:tagPos=matchend(getline('.'),'^\s*#if\(\(n\)\?def\|target\)\s\+')
+    let l:tag=Trim(strpart(getline('.'),l:tagPos))
+"    echo 'XXX l:tag='.l:tag
+    let l:tagMustBeDefined=(getline('.')=~'^\s*#if\(def\|target\)')
+"    echo 'XXX l:tagMustBeDefined='.l:tagMustBeDefined
+    let l:tagIsDefined=SBimDefined(l:tag)
+"    echo 'XXX l:tagIsDefined='.l:tagIsDefined
+    let s:keepSource=(l:tagMustBeDefined && l:tagIsDefined) || (!l:tagMustBeDefined && !l:tagIsDefined)
+"    echo 'XXX s:keepSource='.s:keepSource
+    call setline('.','')
+
+endfunction
+
+" ==============================================================
+" Labels
 
 function! SBimLabels()
 
@@ -203,6 +382,9 @@ function! SBimLabels()
 
 endfunction
 
+" ==============================================================
+" Output file
+
 function! SBimOutputFile(outputFile)
 
   if empty(a:outputFile)
@@ -232,14 +414,21 @@ function! SBimOutputFile(outputFile)
 
 endfunction
 
+" ==============================================================
+" Main
+
 function! SBim(outputFile)
 
   let s:ignoreCaseBackup=&ignorecase
   set ignorecase
 
+  let s:definedTags=[] " a list for the '#define' tags
+
   call SBimOutputFile(a:outputFile)
   call SBimInclude()
-  call SBimConfig()
+  call SBimGetFirstLine()
+  call SBimDefine()
+  call SBimConditionalConversion()
   call SBimClean()
   call SBimLabels()
   call SBimRenum()
@@ -338,5 +527,9 @@ nmap <silent> _bas :call SBim("")<CR>
 "
 " 2017-09-28: Add a check to prevent the code from being loaded
 " twice.
+"
+" 2017-09-29: Prepare implementation of conditional conversion
+" (`#define`, `#ifdef`, `#ifndef`) -- code copied from
+" Imbastardizer.
 
 " vim: textwidth=64:ts=2:sw=2:sts=2:et

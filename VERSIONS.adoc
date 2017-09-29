@@ -16,6 +16,8 @@ Under development.
   have been replaced with BASIC-style single-quote comments.
 - Setting filetype in a Vim modeline is supported.
 - The old mapping ",sb" has been replaced with "_bas".
+- Conditional conversion directives: `#define`, `#ifdef`, `#ifndef`,
+  `#else`, `#endif`.
 
 == 1.0.0
 

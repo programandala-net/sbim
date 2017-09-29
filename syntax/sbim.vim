@@ -4,7 +4,7 @@
 " Author:      Marcos Cruz (programandala.net)
 " License:     Vim license (GPL compatible)
 " URL:         http://programandala.net/es.programa.sbim_vim_syntax_file.html
-" Updated:     2017-09-27
+" Updated:     2017-09-29
 
 " See change log at the end of the file
 
@@ -32,8 +32,13 @@ syn region sbimLineComment start="^\s*'\s" end="$" contains=sbimTodo
 syn region sbimLineComment start="\s'\s" end="$" contains=sbimTodo
 syn match sbimLineComment "^\s*'$"
 
-syn match sbimPreProc "^#firstline\s\+\d\+"
-syn match sbimPreProc "^#include\s\+\S\+"
+syn match sbimPreProc "^\s*#define\>"
+syn match sbimPreProc "^\s*#endif\>"
+syn match sbimPreProc "^\s*#else\>"
+syn match sbimPreProc "^\s*#firstline\>"
+syn match sbimPreProc "^\s*#ifdef\>"
+syn match sbimPreProc "^\s*#ifndef\>"
+syn match sbimPreProc "^\s*#include\>"
 
 " backslash to split the lines:
 syn match sbimSplittedLine "\\\s*\(//.*\)\?$" contains=sbimLineComment
@@ -64,20 +69,25 @@ let b:current_syntax = "sbim"
 "
 " 2012-01-25 Labels added.
 "
-" 2012-01-26 The character to split lines now is backslash instead of the vertical bar.
+" 2012-01-26 The character to split lines now is backslash
+" instead of the vertical bar.
 "
-" 2012-01-27 Fixed. The backslash was not highlighted when a line comment followed it. 
+" 2012-01-27 Fixed. The backslash was not highlighted when a
+" line comment followed it. 
 "
-" 2012-01-27 Fixed. The hash was not properly highlighted when it was the only character in the line. 
+" 2012-01-27 Fixed. The hash was not properly highlighted when
+" it was the only character in the line. 
 "
-" 2012-01-27 Modifed. "sbimMetaComment" is not highlighted apart anymore; "sbimCommentedOut" is used in all cases.
+" 2012-01-27 Modifed. "sbimMetaComment" is not highlighted apart
+" anymore; "sbimCommentedOut" is used in all cases.
 "
-" 2012-12-16 The edit options are moved to <~/.vim/ftplugin/sbim.vim>.
+" 2012-12-16 The edit options are moved to
+" <~/.vim/ftplugin/sbim.vim>.
 "
 " 2015-02-26: Vim license.
 "
-" 2016-01-12: Added `#firstline`; replaced the old the to-do mark with new ones.
-" 2016-01-25: Added `#include`.
+" 2016-01-12: Added `#firstline`; replaced the old the to-do
+" mark with new ones.  2016-01-25: Added `#include`.
 "
 " 2017-09-12: Update line comments.
 "
@@ -86,3 +96,6 @@ let b:current_syntax = "sbim"
 " 2017-09-20: Update: Remove comments other than `'`.
 "
 " 2017-09-27: Support emtpy `'` line comments.
+"
+" 2017-09-29: Simplify matchs of `#include` and `#firstline`.
+" Add `#define`, `#endif`, `#else`, `#ifdef`, `#ifndef`.
