@@ -4,7 +4,7 @@
 " Author:   Marcos Cruz (programandala.net)
 " License:  Vim license (GPL compatible)
 " URL:      http://programandala.net/en.program.superbasic_vim_syntax_file.html
-" Updated:  2017-09-25
+" Updated:  2017-09-28
 
 " This syntax file is not a complete implementation yet.
 
@@ -488,7 +488,6 @@ syn keyword superbasicFunction CPEEK_W
 syn keyword superbasicProcedure CURMOV
 syn keyword superbasicProcedure CURSOR_ON%
 syn keyword superbasicFunction DEFINED
-syn keyword superbasicProcedure DEXT
 syn keyword superbasicProcedure DEXT
 syn keyword superbasicProcedure DIR_LIST
 syn keyword superbasicProcedure DIR_SET
@@ -1014,11 +1013,26 @@ syn keyword superbasicFunction WMAVER$
 
 " DIY Toolkit keywords
 
+syn keyword superbasicFunction INARRAY%
 syn keyword superbasicFunction MINIMUM
 syn keyword superbasicFunction MINIMUM%
 syn keyword superbasicFunction MAXIMUM
 syn keyword superbasicFunction MAXIMUM%
 " ...and many more to come.
+
+" BMPCVT (PC Bitmap conversion) keywords
+
+syn keyword superbasicProcedure BMPCVT8
+syn keyword superbasicProcedure BMPLOAD
+syn keyword superbasicProcedure BMPLOADC
+syn keyword superbasicProcedure CVT8CP
+syn keyword superbasicFunction WL_BMP2SPRT16
+syn keyword superbasicFunction WL_BMP2SPRT64
+syn keyword superbasicProcedure WL_BMP8LOAD
+syn keyword superbasicProcedure WL_BMPCVT32
+syn keyword superbasicProcedure WL_BMPCVT33
+syn keyword superbasicFunction WL_RGB2AUR
+
 
 " -------------------------------------------------------------
 
@@ -1087,33 +1101,67 @@ let b:current_syntax = "superbasic"
 " -------------------------------------------------------------
 " History
 
-" 2010-07-06: First version, based on basic.vim
-" (mantained by Allan Kelly <allan AT fruitloaf DOT co DOT uk>).
-" 2010-08-04: Bug fixed: OR and AND were defined as math operators, and highlighted inside strings.
-" Now they are defined as superbasic statements, like INSTR.
+" 2010-07-06: First version, based on basic.vim (mantained by Allan Kelly
+" <allan AT fruitloaf DOT co DOT uk>).
+"
+" 2010-08-04: Bug fixed: OR and AND were defined as math operators, and
+" highlighted inside strings.  Now they are defined as superbasic statements,
+" like INSTR.
+"
 " 2010-08-11: UQLX emulator keywords added.
+"
 " 2010-08-11: SMSQ (QLX) / SBASIC keywords added.
+"
 " 2010-08-20: SMSQ/E (QPC2) / SBASIC keywords added; QPC2 keywords added.
+"
 " 2011-02-19: Added WPUT.
+"
 " 2011-02-20: Added LGET,LPUT,UPUT,WGET.
+"
 " 2011-03-13: Added enddef,endif,endfor,endrep,endsel,defproc,deffn.
-" 2011-03-15: All keywords with an ending "$" (e.g INKEY$) were not highlighted. They are changed to "syn match" to fix it.
-" 2011-03-16: Added all Turbo Toolkit keywords. Fixed the problem "FIX/FIX$" with a match, but it's not the ideal solution.
+"
+" 2011-03-15: All keywords with an ending "$" (e.g INKEY$) were not
+" highlighted. They are changed to "syn match" to fix it.
+"
+" 2011-03-16: Added all Turbo Toolkit keywords. Fixed the problem "FIX/FIX$"
+" with a match, but it's not the ideal solution.
+"
 " 2011-08-13: "basic" prefix changed to "superbasic".
-" 2011-04-06: Added the MegaToolkit keywords. Fixed the "$" problem: iskeyword had to be set! All "match" are changed back to "keyword". Bug fixed: QPC_VER$ was marked as procedure. Added: set fileencoding=latin1.
-" 2011-04-21: Added the Display toolkit keywords. Bug fixed: Added digits to iskeyword.
+"
+" 2011-04-06: Added the MegaToolkit keywords. Fixed the "$" problem: iskeyword
+" had to be set! All "match" are changed back to "keyword". Bug fixed:
+" QPC_VER$ was marked as procedure. Added: set fileencoding=latin1.
+"
+" 2011-04-21: Added the Display toolkit keywords. Bug fixed: Added digits to
+" iskeyword.
+"
 " 2011-05-02: Bug fixed: "ERRorr" was wrongly marked as a function.
+"
 " 2011-05-11: Added VER$. Somehow it was missing!
+"
 " 2011-08-16: Added DAY%, MONTH% and YEAR%.
-" 2011-08-26: Added the first DIY Toolkit keywords: MINIMUM, MINIMUM%, MAXIMUM and MAXIMUM%.
+"
+" 2011-08-26: Added the first DIY Toolkit keywords: MINIMUM, MINIMUM%, MAXIMUM
+" and MAXIMUM%.
+"
 " 2011-08-27: Typo fixed.
+"
 " 2011-08-30: Added "GO TO" and "GO SUB" (match with space).
+"
 " 2012-01-29: Added TO.
+"
 " 2012-09-03: Moved the editing preferences to a filetype plugin.
+"
 " 2015-02-26: Vim license.
+"
 " 2016-01-12: Completed the to-do marks.
+"
 " 2016-01-13: Added some SMSQmulator keywords.
+"
 " 2016-01-30: Added two SMSQmulator keywords: flp_drive, flp_drive$.
+"
 " 2016-01-31: Added more SMSQmulator keywords.
+"
 " 2017-09-25: Add the "home_" family.
-
+"
+" 2017-09-28: Add `inarray%`. Remove duplicate. Add BMPCVT keywords.
