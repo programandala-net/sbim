@@ -4,19 +4,19 @@
 " Author:   Marcos Cruz (programandala.net)
 " License:  Vim license (GPL compatible)
 " URL:      http://programandala.net/en.program.superbasic_vim_syntax_file.html
-" Updated:  2017-09-28
+" Updated:  2017-10-10
 
 " This syntax file is not a complete implementation yet.
 
 " History: See at the end of the file
 
-" -------------------------------------------------------------
+" --------------------------------------------------------------
 " To-do
 
 " - Toolkit 3 keywords.
 " Bug: in "xxKEYWORD$", "KEYWORD$" is highlighted.
 
-" -------------------------------------------------------------
+" --------------------------------------------------------------
 
 " For Vim version 5.x: Clear all syntax items
 " For Vim version 6.x: Quit when a syntax file was already loaded
@@ -34,8 +34,7 @@ endif
 
 syn case ignore
 
-" -------------------------------------------------------------
-
+" --------------------------------------------------------------
 " Standard QL SuperBASIC keywords
 
 syn keyword superbasicFunction ABS
@@ -220,6 +219,7 @@ syn keyword superbasicStatement WHEN
 syn keyword superbasicProcedure WIDTH
 syn keyword superbasicProcedure WINDOW
 
+" --------------------------------------------------------------
 " Toolkit 2 keywords
 
 syn keyword superbasicProcedure AJOB
@@ -339,6 +339,7 @@ syn keyword superbasicProcedure WREN
 syn keyword superbasicProcedure WSTAT
 syn keyword superbasicProcedure WTV
 
+" --------------------------------------------------------------
 " Turbo Toolkit keywords
 
 syn keyword superbasicFunction TURBO_DUMMY$
@@ -445,6 +446,7 @@ syn keyword superbasicStatement TURBO_F
 syn keyword superbasicStatement TURBO_V
 syn keyword superbasicStatement WHEN_ERROR
 
+" --------------------------------------------------------------
 " MegaToolkit keywords
 
 syn keyword superbasicFunction ACCESS
@@ -674,6 +676,7 @@ syn keyword superbasicProcedure _PROG
 syn keyword superbasicFunction _SBYTES
 syn keyword superbasicFunction _SCALE
 
+" --------------------------------------------------------------
 " Pointer Environment and Hotkey keywords
 
 " In PTR_GEN
@@ -724,6 +727,7 @@ syn keyword superbasicFunction HOT_TYPE
 syn keyword superbasicFunction HOT_WAKE
 syn keyword superbasicProcedure TH_FIX
 
+" --------------------------------------------------------------
 " Common disk interface keywords
 
 syn keyword superbasicProcedure AUTO_DIS
@@ -768,6 +772,7 @@ syn keyword superbasicProcedure WIN_EXT
 syn keyword superbasicProcedure WIN2
 syn keyword superbasicProcedure WIN_USE
 
+" --------------------------------------------------------------
 " QPAC2 button frame keywords
 
 syn keyword superbasicProcedure BT_EXEC
@@ -775,6 +780,7 @@ syn keyword superbasicProcedure BT_HOTKEY
 syn keyword superbasicProcedure BT_SLEEP
 syn keyword superbasicProcedure BT_WAKE
 
+" --------------------------------------------------------------
 " Menu extension QMENU keywords (from Jochen Merz)
 
 syn keyword superbasicFunction BUTTON_SELECT
@@ -798,6 +804,7 @@ syn keyword superbasicProcedure SCRAP_PUT
 syn keyword superbasicFunction SCRAP_TYPE
 syn keyword superbasicProcedure VIEW_FILE
 
+" --------------------------------------------------------------
 " SMSQ and SBASIC keywords
 
 syn keyword superbasicFunction DEVTYPE
@@ -817,6 +824,7 @@ syn keyword superbasicProcedure QSAVE_O
 syn keyword superbasicProcedure QUIT
 syn keyword superbasicProcedure SBASIC
 
+" --------------------------------------------------------------
 " SMSQ/E and SBASIC keywords
 
 syn keyword superbasicProcedure COLOUR_NATIVE
@@ -904,6 +912,7 @@ syn keyword superbasicProcedure WIN_START
 syn keyword superbasicProcedure WIN_STOPW
 syn keyword superbasicProcedure WIN_WP
 
+" --------------------------------------------------------------
 " Used in QL emulators for Atari
 
 syn keyword superbasicFunction PEEKS
@@ -916,6 +925,7 @@ syn keyword superbasicProcedure POKES_L
 syn keyword superbasicProcedure POKES$
 syn keyword superbasicProcedure PROT_MEM
 
+" --------------------------------------------------------------
 " UQLX emulator keywords
 
 syn keyword superbasicProcedure Kill_UQLX
@@ -927,6 +937,7 @@ syn keyword superbasicFunction getXarg$
 syn keyword superbasicFunction getXres
 syn keyword superbasicFunction getYres
 
+" --------------------------------------------------------------
 " SMSQmulator keywords
 
 syn keyword superbasicFunction flp_drive$
@@ -938,6 +949,8 @@ syn keyword superbasicFunction win_use$
 syn keyword superbasicFunction nfa_use$
 syn keyword superbasicFunction sfa_use$
 
+" --------------------------------------------------------------
+
 " Some undocumented keywords (as of 2011-08-16)
 " found in SBASIC (QPC2)
 
@@ -945,6 +958,7 @@ syn keyword superbasicFunction DAY%
 syn keyword superbasicFunction MONTH%
 syn keyword superbasicFunction YEAR%
 
+" --------------------------------------------------------------
 " QPC2 emulator keywords
 
 syn keyword superbasicFunction CD_ALLTIME
@@ -993,6 +1007,7 @@ syn keyword superbasicProcedure QPC_SYNCSCRAP
 syn keyword superbasicFunction QPC_VER$
 syn keyword superbasicProcedure QPC_WINDOWTITLE
 
+" --------------------------------------------------------------
 " Display Toolkit keywords
 
 syn keyword superbasicFunction ADDRESS
@@ -1011,6 +1026,7 @@ syn keyword superbasicFunction SYS_VAR
 syn keyword superbasicFunction WIN_MAN
 syn keyword superbasicFunction WMAVER$
 
+" --------------------------------------------------------------
 " DIY Toolkit keywords
 
 syn keyword superbasicFunction INARRAY%
@@ -1020,6 +1036,7 @@ syn keyword superbasicFunction MAXIMUM
 syn keyword superbasicFunction MAXIMUM%
 " ...and many more to come.
 
+" --------------------------------------------------------------
 " BMPCVT (PC Bitmap conversion) keywords
 
 syn keyword superbasicProcedure BMPCVT8
@@ -1033,12 +1050,89 @@ syn keyword superbasicProcedure WL_BMPCVT32
 syn keyword superbasicProcedure WL_BMPCVT33
 syn keyword superbasicFunction WL_RGB2AUR
 
+" --------------------------------------------------------------
+" EasyPtr 4 keywords (by Albin Hessler and Marcel Kilgus)
 
-" -------------------------------------------------------------
+syn keyword superbasicFunction APPA0
+syn keyword superbasicFunction APPA1
+syn keyword superbasicFunction APPA2
+syn keyword superbasicFunction APPA3
+syn keyword superbasicFunction APPA4
+syn keyword superbasicFunction APPA5
+syn keyword superbasicFunction APPA6
+syn keyword superbasicFunction APPA7
+syn keyword superbasicFunction APPA8
+syn keyword superbasicFunction APPA9
+syn keyword superbasicProcedure BLOBW
+syn keyword superbasicProcedure CLAMP
+syn keyword superbasicProcedure CLPT
+syn keyword superbasicProcedure FLIM
+syn keyword superbasicFunction GET$
+syn keyword superbasicFunction L_WSA
+syn keyword superbasicProcedure MAWBAR
+syn keyword superbasicProcedure MAWBARR
+syn keyword superbasicProcedure MAWCLEAR
+syn keyword superbasicProcedure MAWDRAW
+syn keyword superbasicProcedure MAWITEM
+syn keyword superbasicFunction MAWNUM
+syn keyword superbasicFunction MAWNUM
+syn keyword superbasicProcedure MAWS
+syn keyword superbasicProcedure MAWSETUP
+syn keyword superbasicFunction MCALL
+syn keyword superbasicProcedure MCALLT
+syn keyword superbasicProcedure MCLEAR
+syn keyword superbasicProcedure MDRAW
+syn keyword superbasicProcedure MENUS
+syn keyword superbasicProcedure MEN_EXT
+syn keyword superbasicProcedure MINPUT
+syn keyword superbasicProcedure MINPUT
+syn keyword superbasicProcedure MITEM
+syn keyword superbasicProcedure MIWDRAW
+syn keyword superbasicProcedure MKEY%
+syn keyword superbasicProcedure MKEY%
+syn keyword superbasicProcedure MLIDRAW
+syn keyword superbasicProcedure MLIST
+syn keyword superbasicFunction MOBJA
+syn keyword superbasicProcedure MRDIM
+syn keyword superbasicProcedure MREMB
+syn keyword superbasicProcedure MSETUP
+syn keyword superbasicProcedure MSETUP
+syn keyword superbasicProcedure MSTAT
+syn keyword superbasicProcedure MSTAT%
+syn keyword superbasicProcedure MSTAT%
+syn keyword superbasicFunction MTEXT$
+syn keyword superbasicProcedure MWDEF
+syn keyword superbasicProcedure MWINDOW
+syn keyword superbasicProcedure MWINDOW
+syn keyword superbasicProcedure MWLINK
+syn keyword superbasicProcedure OUTL
+syn keyword superbasicProcedure PINF
+syn keyword superbasicProcedure PTOP
+syn keyword superbasicProcedure PTRMEN_EXT
+syn keyword superbasicProcedure PTR_EXT
+syn keyword superbasicProcedure PUT$
+syn keyword superbasicProcedure PVAL
+syn keyword superbasicProcedure RDPT
+syn keyword superbasicProcedure REMPT
+syn keyword superbasicFunction RPXL%
+syn keyword superbasicFunction SPRA
+syn keyword superbasicProcedure SPRITES
+syn keyword superbasicProcedure SPRS
+syn keyword superbasicProcedure SPRW
+syn keyword superbasicProcedure S_WSA
+syn keyword superbasicProcedure WMOV
+syn keyword superbasicProcedure WRES
+syn keyword superbasicProcedure WSAIN
+syn keyword superbasicProcedure WSARS
+syn keyword superbasicProcedure WSASV
+syn keyword superbasicProcedure WSAV
+syn keyword superbasicProcedure WSIZE
+
+" --------------------------------------------------------------
 
 syn keyword superbasicTodo contained TODO FIXME XXX
 
-" -------------------------------------------------------------
+" --------------------------------------------------------------
 
 "integer number, or floating point number without a dot.
 syn match superbasicNumber "\<\d\+\>"
@@ -1098,7 +1192,7 @@ endif
 
 let b:current_syntax = "superbasic"
 
-" -------------------------------------------------------------
+" --------------------------------------------------------------
 " History
 
 " 2010-07-06: First version, based on basic.vim (mantained by Allan Kelly
@@ -1165,3 +1259,5 @@ let b:current_syntax = "superbasic"
 " 2017-09-25: Add the "home_" family.
 "
 " 2017-09-28: Add `inarray%`. Remove duplicate. Add BMPCVT keywords.
+"
+" 2017-10-10: Add EasyPtr 4 keywords.
