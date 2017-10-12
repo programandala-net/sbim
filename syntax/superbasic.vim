@@ -4,7 +4,7 @@
 " Author:   Marcos Cruz (programandala.net)
 " License:  Vim license (GPL compatible)
 " URL:      http://programandala.net/en.program.superbasic_vim_syntax_file.html
-" Updated:  2017-10-10
+" Updated:  2017-10-12
 
 " This syntax file is not a complete implementation yet.
 
@@ -1129,33 +1129,53 @@ syn keyword superbasicProcedure WSAV
 syn keyword superbasicProcedure WSIZE
 
 " --------------------------------------------------------------
+" Meta comments
 
 syn keyword superbasicTodo contained TODO FIXME XXX
 
 " --------------------------------------------------------------
+" Literals
 
-"integer number, or floating point number without a dot.
+" Integer number, or floating point number without a dot:
 syn match superbasicNumber "\<\d\+\>"
-"floating point number, with dot
+
+" Floating point number, with dot:
 syn match superbasicNumber "\<\d\+\.\d*\>"
-"floating point number, starting with a dot
+
+" Floating point number, starting with a dot:
 syn match superbasicNumber "\.\d\+\>"
 
-" String and Character constants
+" Hex and binary numbers supported by SBASIC:
+syn match superbasicNumber "\<\$[0-9a-f]\+\>"
+syn match superbasicNumber "\<%[01]\+\>"
+
+" String and Character constants:
 syn match superbasicSpecial contained "\\\d\d\d\|\\."
 "syn region superbasicString start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=superbasicSpecial
 syn region superbasicString start='"' end='"' contains=superbasicSpecial
 syn region superbasicString start="'" end="'" contains=superbasicSpecial
 
+" --------------------------------------------------------------
+" Comments
+
 syn region superbasicComment start="REMark" end="$" contains=superbasicTodo
 syn region superbasicComment start="REM" end="$" contains=superbasicTodo
 syn region superbasicMistake start="MISTake" end="$" contains=superbasicTodo
+
+" --------------------------------------------------------------
+" Misc
+
 syn region superbasicLineNumber start="^\s*\d" end="\s"
 syn match superbasicTypeSpecifier "[a-zA-Z0-9][\$%]"ms=s+1
+
 " Used with OPEN statement
 syn match superbasicFilenumber "#\d\+"
+
 syn match superbasicMathsOperator "[<>+\*^/\\=-]| NOT "
 " syn match superbasicMathsOperator "-\|=\|[:<>+\*^/\\]\| AND \| OR "
+
+" --------------------------------------------------------------
+" Highlighting
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
@@ -1260,4 +1280,7 @@ let b:current_syntax = "superbasic"
 "
 " 2017-09-28: Add `inarray%`. Remove duplicate. Add BMPCVT keywords.
 "
-" 2017-10-10: Add EasyPtr 4 keywords.
+" 2017-10-10: Add EasyPtr 4 keywords. Support hex and binary
+" numbers.
+"
+" 2017-10-12: Fix pattern of binary numbers.
