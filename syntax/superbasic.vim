@@ -4,7 +4,7 @@
 " Author:   Marcos Cruz (programandala.net)
 " License:  Vim license (GPL compatible)
 " URL:      http://programandala.net/en.program.superbasic_vim_syntax_file.html
-" Updated:  2017-10-12
+" Updated:  2017-10-16
 
 " This syntax file is not a complete implementation yet.
 
@@ -942,9 +942,13 @@ syn keyword superbasicFunction getYres
 
 syn keyword superbasicFunction flp_drive$
 syn keyword superbasicProcedure flp_drive
+syn keyword superbasicProcedure killsound
 syn keyword superbasicProcedure mem_use
 syn keyword superbasicProcedure nfa_use
 syn keyword superbasicProcedure sfa_use
+syn keyword superbasicProcedure soundfile
+syn keyword superbasicProcedure soundfile2
+syn keyword superbasicProcedure soundfile3
 syn keyword superbasicFunction win_use$
 syn keyword superbasicFunction nfa_use$
 syn keyword superbasicFunction sfa_use$
@@ -1284,3 +1288,5 @@ let b:current_syntax = "superbasic"
 " numbers.
 "
 " 2017-10-12: Fix pattern of binary numbers.
+"
+" 2017-10-16: Add sound keywords of SMSQmulator.
