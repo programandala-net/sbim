@@ -4,7 +4,7 @@
 " This file is part of SBim
 " http://programandala.net/es.programa.sbim.html
 
-" Last modified 201709291146
+" Last modified 201710172016
 " See change log at the end of the file
 
 " ==============================================================
@@ -219,7 +219,7 @@ function! SBimConditionalConversion()
 
   let l:unresolvedCondition=0 " flag
 
-  while search('^\s*#if\(\(n\)\?def\|target\)\s\+.\+$','Wc')
+  while search('^\s*#if\(n\)\?def\s\+.\+$','Wc')
 
     let l:else=0 " flag
 
@@ -229,7 +229,7 @@ function! SBimConditionalConversion()
 
       let l:currentLine=getline('.')
 
-      if l:currentLine=~'^\s*#if\(def\|target\)\s\+.\+'
+      if l:currentLine=~'^\s*#ifdef\s\+.\+'
         " #IFDEF
 "        echo 'XXX #ifdef found'
         if l:unresolvedCondition
@@ -246,7 +246,7 @@ function! SBimConditionalConversion()
           echoerr '`#ifndef` structures can not be nested'
           break
         else
-          call Ifdef()
+          call SBimIfdef()
           let l:unresolvedCondition=1
         endif
 "      elseif l:currentLine=~'^\s*#elseifdef\s\+.\+'
@@ -301,10 +301,10 @@ endfunction
 function! SBimIfdef()
 
     let l:ifLineNumber=line('.')
-    let l:tagPos=matchend(getline('.'),'^\s*#if\(\(n\)\?def\|target\)\s\+')
+    let l:tagPos=matchend(getline('.'),'^\s*#if\(n\)\?def\s\+')
     let l:tag=Trim(strpart(getline('.'),l:tagPos))
 "    echo 'XXX l:tag='.l:tag
-    let l:tagMustBeDefined=(getline('.')=~'^\s*#if\(def\|target\)')
+    let l:tagMustBeDefined=(getline('.')=~'^\s*#ifdef')
 "    echo 'XXX l:tagMustBeDefined='.l:tagMustBeDefined
     let l:tagIsDefined=SBimDefined(l:tag)
 "    echo 'XXX l:tagIsDefined='.l:tagIsDefined
@@ -531,5 +531,8 @@ nmap <silent> _bas :call SBim("")<CR>
 " 2017-09-29: Prepare implementation of conditional conversion
 " (`#define`, `#ifdef`, `#ifndef`) -- code copied from
 " Imbastardizer.
+"
+" 2017-10-17: Tidy Imbastardizer's code about conditional
+" conversion.
 
 " vim: textwidth=64:ts=2:sw=2:sts=2:et
