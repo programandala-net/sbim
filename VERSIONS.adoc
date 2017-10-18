@@ -1,6 +1,6 @@
 = Versions of SBim
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-10-10
+:revdate: 2017-10-18
 
 // This file is part of SBim
 // http://programandala.net/es.programa.sbim.html
@@ -19,6 +19,7 @@ Under development.
 - Conditional conversion directives: `#define`, `#ifdef`, `#ifndef`,
   `#else`, `#endif`.
 - Improved Vim syntax files.
+- `#firstline` has been renamed to `#renum` and fixed.
 
 == 1.0.0
 

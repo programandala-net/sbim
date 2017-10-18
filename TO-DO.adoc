@@ -1,6 +1,6 @@
 = SBim to-do list
 :author: Marcos Cruz (programandala.net)
-:revdate: 2017-09-28
+:revdate: 2017-10-18
 
 2017-09-10:
 
@@ -15,4 +15,11 @@
 2017-09-20:
 
 - Add a "quiet" or "verbose" parameter.
-- Add `#renum` directive.
+
+2017-10-10:
+
+- Check `#include`.
+
+2017-10-18:
+
+- Improve `#renum` with an optional step parameter.

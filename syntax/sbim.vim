@@ -4,7 +4,7 @@
 " Author:      Marcos Cruz (programandala.net)
 " License:     Vim license (GPL compatible)
 " URL:         http://programandala.net/es.programa.sbim_vim_syntax_file.html
-" Updated:     2017-09-29
+" Updated:     2017-10-18
 
 " See change log at the end of the file
 
@@ -35,10 +35,10 @@ syn match sbimLineComment "^\s*'$"
 syn match sbimPreProc "^\s*#define\>"
 syn match sbimPreProc "^\s*#endif\>"
 syn match sbimPreProc "^\s*#else\>"
-syn match sbimPreProc "^\s*#firstline\>"
 syn match sbimPreProc "^\s*#ifdef\>"
 syn match sbimPreProc "^\s*#ifndef\>"
 syn match sbimPreProc "^\s*#include\>"
+syn match sbimPreProc "^\s*#renum\>"
 
 " backslash to split the lines:
 syn match sbimSplittedLine "\\\s*\(//.*\)\?$" contains=sbimLineComment
@@ -99,3 +99,5 @@ let b:current_syntax = "sbim"
 "
 " 2017-09-29: Simplify matchs of `#include` and `#firstline`.
 " Add `#define`, `#endif`, `#else`, `#ifdef`, `#ifndef`.
+"
+" 2017-10-18: Update: Replace `#firstline` with `#renum`.

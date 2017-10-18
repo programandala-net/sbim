@@ -4,7 +4,7 @@
 " This file is part of SBim
 " http://programandala.net/es.programa.sbim.html
 
-" Last modified 201710172016
+" Last modified 201710181334
 " See change log at the end of the file
 
 " ==============================================================
@@ -74,7 +74,7 @@ function! SBimRenum()
   " save the file.
 
   " Call the the nl program (part of the Debian coreutils package):
-  execute ":silent %!nl --body-numbering=t --number-format=rn --number-width=5 --number-separator=' ' --starting-line-number=".s:firstLine." --line-increment=1"
+  execute ":silent %!nl --body-numbering=t --number-format=rn --number-width=5 --number-separator=' ' --starting-line-number=".s:renumLine." --line-increment=1"
 
   " In older versions of coreutils,
   " -v sets the first line number, and -i sets the line increment.
@@ -94,27 +94,25 @@ function! SBimRenum()
 
 endfunction
 
-function! SBimGetFirstLine()
+function! SBimGetRenumLine()
 
-  " Store into s:firstLine the first line number
+  " Store into s:renumLine the first line number
   " to be used by the final S*BASIC program
-  " The command #firstline can be used to set
+  " The directive `#renum` can be used to set
   " the desired line number. Only the first occurence
-  " of #firstline will be used; it can be anywhere
+  " of `#renum` will be used; it can be anywhere
   " in the source but always at the start of a line
   " (with optional indentation).
 
-  let s:firstLine=1 " default value
+  let s:renumLine=1 " default value
   
-  " Go to the top of the file:
-  normal gg
-  if search('^\s*#firstline\s\+[0-9]\+\>','Wc')
-    " Store the number into register 'l':
-    normal ww"lyw
-    " And then into the variable:
-    let s:firstLine=getreg('l',1)
+  call cursor(1,1)
+  if search('^\s*#renum\s\+[0-9]\+\>','Wc')
+    let l:valuePos=matchend(getline('.'),'^\s*#renum\s*')
+    let s:renumLine=strpart(getline('.'),l:valuePos)
+    call setline('.','')
   endif
-  echo 'First line number: '.s:firstLine
+  echo 'Renum line: '.s:renumLine
 
 endfunction
 
@@ -350,7 +348,7 @@ function! SBimLabels()
     " Debug message:
     "echo 'Clean label: <' . l:label . '>'
     " Use the label as the key to store the line number:
-    let l:lineNumber[l:label]=line('.')+s:firstLine-1
+    let l:lineNumber[l:label]=line('.')+s:renumLine-1
     " Go to the next word:
     normal w
   endwhile
@@ -426,7 +424,7 @@ function! SBim(outputFile)
 
   call SBimOutputFile(a:outputFile)
   call SBimInclude()
-  call SBimGetFirstLine()
+  call SBimGetRenumLine()
   call SBimDefine()
   call SBimConditionalConversion()
   call SBimClean()
@@ -532,7 +530,11 @@ nmap <silent> _bas :call SBim("")<CR>
 " (`#define`, `#ifdef`, `#ifndef`) -- code copied from
 " Imbastardizer.
 "
-" 2017-10-17: Tidy Imbastardizer's code about conditional
-" conversion.
+" 2017-10-17: Fix and tidy Imbastardizer's code about
+" conditional conversion.
+"
+" 2017-10-18: Rename `#firstline` to `#renum`, `s:firstLine` to
+" `s:renumLine` and `GetFirstLine` to `GetRenumLine`. Improve
+" function `GetRenumLine`.
 
 " vim: textwidth=64:ts=2:sw=2:sts=2:et
